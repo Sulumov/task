@@ -38,7 +38,15 @@ export default {
             this.loading = false;
             this.modalData = data;
             this.toggleModal({ name: "simple", state: true });
-          });
+          }).catch(() => {
+            this.loading = false;
+            this.$buefy.toast.open({
+                  duration: 5000,
+                  message: 'Something error',
+                  position: 'is-bottom',
+                  type: 'is-danger'
+              })
+          })
       }
     },
   },
