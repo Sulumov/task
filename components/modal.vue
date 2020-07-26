@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <b-modal :active="visible" :full-screen="fullScreen" has-modal-card  :can-cancel="canCancel" :on-cancel="hide">
-      <div class="modal-inner">
-        <slot />
-      </div>
-    </b-modal>
-  </div>
+  <b-modal
+    :active="visible"
+    :full-screen="fullScreen"
+    has-modal-card
+    :can-cancel="canCancel"
+    :on-cancel="hide"
+  >
+    <div class="modal-inner">
+      <slot />
+    </div>
+  </b-modal>
 </template>
 <script>
-import {mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 let timeOut;
 
 export default {
@@ -30,46 +34,47 @@ export default {
     },
     fullScreen: {
       type: Boolean,
-      default: false
+      default: false,
     },
     closeTimeOut: {
       type: Number,
       default: 0,
     },
   },
-  mounted(){
-    if(this.$route.hash === `#${this.name}`) {
-     this.toggleModal({name: this.name, state: true})
+  mounted() {
+    if (this.$route.hash === `#${this.name}`) {
+      this.toggleModal({ name: this.name, state: true });
     }
   },
   watch: {
     active(propActive) {
-      window.onhashchange = () =>  this.hide();
+      window.onhashchange = () => this.hide();
       if (propActive && !this.visible) this.show();
       else if (!propActive && this.visible) this.hide();
-    }
+    },
   },
   methods: {
     ...mapMutations(["toggleModal"]),
     show() {
       this.visible = true;
       this.$router.push({ hash: `#${this.name}` });
-      if (this.closeTimeOut > 0) timeOut = setTimeout(()=> this.hide(), this.closeTimeOut)
+      if (this.closeTimeOut > 0)
+        timeOut = setTimeout(() => this.hide(), this.closeTimeOut);
     },
     hide() {
       clearTimeout(timeOut);
       this.visible = false;
       this.$router.push({ hash: "" });
-      this.toggleModal({name: this.name, state: false})
-    }
+      this.toggleModal({ name: this.name, state: false });
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-  .modal-inner {
-    position: relative;
-    background: #fff;
-    padding: 20px;
-    text-align: center;
-  }
+.modal-inner {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+}
 </style>
