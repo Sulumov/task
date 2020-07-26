@@ -13,6 +13,7 @@
         />
       </div>
     </modal>
+    
   </div>
 </template>
 
@@ -30,7 +31,8 @@ export default {
   methods: mapMutations(["toggleModal"]),
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+
 .ad {
   height: 100vh;
   margin: -20px;

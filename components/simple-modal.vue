@@ -57,7 +57,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .modal-title {
   font-weight: bold;
   margin-bottom: 10px;
