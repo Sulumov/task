@@ -1,7 +1,8 @@
 const state = () => ({
   modals: {
     ad: false,
-    simple: false
+    modal: false,
+    addTask: false
   }
 });
 

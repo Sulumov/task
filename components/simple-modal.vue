@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button class="btn" type="is-primary" @click="openAndFetch">Open simple modal</b-button>
-    <modal name="simple" :active="simpleModal">
+    <b-button class="btn" type="is-primary" @click="openAndFetch">Fetch fake data to the modal window</b-button>
+    <modal name="modal" :active="modal">
       <div class="modal-title">{{modalData.title}}</div>
       <p>{{modalData.body}}</p>
     </modal>
@@ -23,13 +23,13 @@ export default {
     modal,
   },
   computed: mapState({
-    simpleModal: (state) => state.modals.simple,
+    modal: (state) => state.modals.modal,
   }),
   methods: {
     ...mapMutations(["toggleModal"]),
     openAndFetch() {
       if (Object.keys(this.modalData).length) {
-        this.toggleModal({ name: "simple", state: true });
+        this.toggleModal({ name: "modal", state: true });
       } else {
         this.loading = true;
         this.$axios
@@ -37,7 +37,7 @@ export default {
           .then(({ data }) => {
             this.loading = false;
             this.modalData = data;
-            this.toggleModal({ name: "simple", state: true });
+            this.toggleModal({ name: "modal", state: true });
           }).catch(() => {
             this.loading = false;
             this.$buefy.toast.open({
@@ -51,7 +51,7 @@ export default {
     },
   },
   mounted() {
-    if (this.simpleModal) {
+    if (this.modal) {
       this.openAndFetch();
     }
   },

@@ -2,6 +2,7 @@
   <div>
     <simple-modal />
     <banner />
+    <todo />
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import modal from "@/components/modal";
 import simpleModal from "@/components/simple-modal";
 import banner from "@/components/banner";
+import todo from "@/components/todo"
 
 export default {
   name: "HomePage",
@@ -16,6 +18,7 @@ export default {
     modal,
     simpleModal,
     banner,
+    todo
   }
 };
 </script>
