@@ -16,11 +16,11 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
-let timeOut;
 
 export default {
   data: () => ({
     visible: false,
+    timeOut: null
   }),
   props: {
     name: {
@@ -65,11 +65,11 @@ export default {
       this.visible = true;
       this.$router.push({ hash: `#${this.name}` });
       if (this.closeTimeOut > 0) {
-        timeOut = setTimeout(() => this.hide(), this.closeTimeOut);
+        this.timeOut = setTimeout(() => this.hide(), this.closeTimeOut);
       }
     },
     hide() {
-      clearTimeout(timeOut);
+      clearTimeout(this.timeOut);
       this.visible = false;
       this.$router.push({ hash: "" });
       this.toggleModal({ name: this.name, state: false });

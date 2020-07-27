@@ -6,7 +6,6 @@
 </template>
 
 <script >
-import { mapState, mapMutations } from "vuex";
 import modal from "@/components/modal";
 import simpleModal from "@/components/simple-modal";
 import banner from "@/components/banner";
@@ -17,8 +16,7 @@ export default {
     modal,
     simpleModal,
     banner,
-  },
-  methods: mapMutations(["toggleModal"]),
+  }
 };
 </script>
 <style lang="scss">
